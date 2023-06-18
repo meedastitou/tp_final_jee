@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<ui:composition>
+		
+			<style type="text/css">
+			    .ui-datatable .ui-datatable-header {
+			        text-align: right !important;
+			    }
+			
+			    .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+			        display: none;
+			    }
+			</style>
+		
+			<h:form id="form">
+			
+			    <div class="card">
+					<p:dataTable id="tableEtudiants" var="etudiant" value="#{etudiantBean.etudiants}" 
+			                     widgetVar="customersTable" multiViewState="true" rows="10" paginator="true"
+			                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			                     rowsPerPageTemplate="5,10,15" 
+			                     rowKey="#{etudiant.id}">
+		
+						<p:column headerText="id" sortBy="#{etudiant.id}" filterBy="#{etudiant.id}">
+			                <h:outputText value="#{etudiant.id}" />
+			            </p:column>
+			              
+			            <p:column  headerText="Nom" sortBy="#{etudiant.nom}" filterBy="#{etudiant.nom}">
+							
+							<h:outputText value="#{etudiant.nom}" />
+						</p:column>
+						<p:column  headerText="Prenom" sortBy="#{etudiant.prenom}" filterBy="#{etudiant.prenom}">
+							
+							<h:outputText value="#{etudiant.prenom}" />
+						</p:column>
+						<p:column  headerText="CNE" sortBy="#{etudiant.cne}" filterBy="#{etudiant.cne}">
+							
+							<h:outputText value="#{etudiant.cne}" />
+						</p:column>
+						<p:column  headerText="Code Filiere" sortBy="#{etudiant.filiere.code}" filterBy="#{etudiant.filiere.code}">
+							
+							<h:outputText value="#{etudiant.filiere.code}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Option" />
+							</f:facet>
+							<div align="center">
+								<p:growl id="msgs" showDetail="true"/>
+								<p:commandLink style="margin-right:10px"  actionListener="#{etudiantBean.delete(etudiant)}" update="tableEtudiants">
+									<p:confirm header="Confirmation" message="Are you sure you want to proceed?" icon="pi pi-exclamation-triangle"/>
+									<i class="pi pi-trash" title="Delete"></i> 
+								</p:commandLink>
+							  	<p:commandLink style="margin-left:10px" actionListener="#{etudiantBean.modify(etudiant)}">
+									<i class="pi pi-pencil" title="Edit" />
+								</p:commandLink>											
+							</div>
+		     
+						</p:column>
+			
+						<f:facet name="footer">
+							<span class="p-text-bold">In total there are
+								#{etudiantBean.etudiants.size()} Etudiants.</span>
+						</f:facet>
+					</p:dataTable>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+			            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+			            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" />
+			        </p:confirmDialog>
+				
+			    </div>
+		    </h:form>
+		</ui:composition>
+	</h:body>
+	
+</html>

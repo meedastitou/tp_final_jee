@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:body>
+
+	      
+		<div class="card">
+		    <h:form>
+
+	        	<p:tieredMenu style="width:200px">
+	        		<!-- Start Acceuil / Dashboaard Menu -->
+		     		<p:menuitem value="Acceuil" actionListener="#{generatePathBean.GoTo('Accueil')}"/>
+		            <p:divider /> <!-- line -->
+		            
+		            <!-- Start Etudiant Menu -->
+					<p:submenu label="Etudiant" icon="pi pi-fw pi-file">
+	                    <p:menuitem value="List des Etudiant" actionListener="#{generatePathBean.GoTo('Etudiant', 'list')}" icon="pi pi-fw pi-list"/>
+	             		<p:menuitem value="New"  actionListener="#{generatePathBean.GoTo('Etudiant', 'add')}" icon="pi pi-fw pi-plus"/>
+		                <p:divider />
+		                <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+		            </p:submenu>
+		       	  	<!-- End Etudiant Menu -->  
+		            
+		            
+		            
+		            <!-- Start Filiere Menu -->
+					<p:submenu label="Filiere" icon="pi pi-fw pi-file">
+	                    <p:menuitem value="List des Filieres" actionListener="#{generatePathBean.GoTo('Filiere', 'list')}" icon="pi pi-fw pi-list"/>
+	             		<p:menuitem value="New"  actionListener="#{generatePathBean.GoTo('Filiere', 'add')}" icon="pi pi-fw pi-plus"/>
+		                <p:divider />
+		                <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+		            </p:submenu>
+		       	  	<!-- End Filiere Menu -->  
+		
+		            <p:submenu label="Users" icon="pi pi-fw pi-user">
+		                <p:menuitem value="List des Filieres" actionListener="#{generatePathBean.GoTo('User', 'list')}" icon="pi pi-fw pi-list"/>
+	             		<p:menuitem value="New"  actionListener="#{generatePathBean.GoTo('User', 'add')}" icon="pi pi-fw pi-user-plus"/>
+		                <p:divider />
+		                <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+		            </p:submenu>
+			
+		            
+		
+		            <p:divider/>
+			
+		            <p:menuitem value="Quit" icon="pi pi-fw pi-power-off" actionListener="#{globalBean.Quit()}"/>
+		        </p:tieredMenu>
+		    </h:form>
+		</div>
+
+	</h:body>
+</html>

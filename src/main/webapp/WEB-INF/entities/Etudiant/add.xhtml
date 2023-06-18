@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<ui:composition>
+			<div class="container">
+				<div class="col-md-6 " >
+					<p:growl id="mes" showDetail="true" />
+					<h:form id="form">
+					
+						<p:fieldset legend="#{etudiantBean.label} d'etudiant">
+							<table>
+								<tr>
+									<td><p:outputLabel for="ide" styleClass="p-d-block">ID</p:outputLabel></td>
+									<td>
+										<p:inputText id="ide" 
+							        		styleClass="p-d-block" 
+							        		disabled="true"
+										   	value="#{etudiantBean.etudiant.id}"
+										   	style="background-color: silver;" 
+										   	readonly="readonly"/>
+								  </td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="nom" styleClass="p-d-block">Nom</p:outputLabel></td>
+									<td>
+										<p:inputText id="nom" styleClass="p-d-block" value="#{etudiantBean.etudiant.nom}" required="true"/>
+										<p:message for="nom"/>	
+									</td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="prenom" styleClass="p-d-block">Prenom</p:outputLabel></td>
+									<td>
+										<p:inputText id="prenom" styleClass="p-d-block" value="#{etudiantBean.etudiant.prenom}" required="true"/>
+										<p:message for="prenom"/>									
+									</td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="cne" styleClass="p-d-block">CNE</p:outputLabel></td>
+									<td>
+										<p:inputText id="cne" styleClass="p-d-block" value="#{etudiantBean.etudiant.cne}" required="true"/>
+										<p:message for="cne"/>
+										
+									</td>
+									
+								</tr>
+								<tr>
+									<td><p:outputLabel for="filiere" styleClass="p-d-block">Filiere</p:outputLabel></td>
+									<td>
+										<p:autoComplete id="filiere" required="true"
+											forceSelection="true" 
+											value="#{etudiantBean.etudiant.filiere}"
+											completeMethod="#{etudiantBean.completeFiliere}"
+											maxResults="10" var="f" itemValue="#{f}" itemLabel="#{f.code}"
+											converter="#{filiereConverter}" />
+									</td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="pic" styleClass="p-d-block">Image</p:outputLabel></td>
+									<td>
+										<p:fileUpload id="pic"
+						                      	mode="advanced" dragDropSupport="true"
+												update="cropperPanel" sizeLimit="100000"
+												allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+						                      	listener="#{etudiantBean.handleFileUpload}"/>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<p:commandLink id="ajax" action="${etudiantBean.save()}" update="form" style="margin-right:20px;">
+							            	<p:commandButton type="button" value="${etudiantBean.label}"  icon="pi pi-check" />
+							        	</p:commandLink>
+							        </td>
+								</tr>
+							</table>
+							
+						</p:fieldset>
+						<p:outputPanel id="cropperPanel" style="display:flex; justify-content:center;">
+							<p:graphicImage                                       
+	                                        height="150" width="150"
+											style="cursor:pointer"
+											value="#{etudiantBean.etudiantPicture()}" stream="false" />
+						</p:outputPanel>
+					</h:form>
+				</div>
+			</div>
+		
+		</ui:composition>
+	</h:body>
+</html>

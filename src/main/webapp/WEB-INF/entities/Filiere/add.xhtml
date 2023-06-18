@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+            xmlns:p="http://primefaces.org/ui">
+      
+
+		<h:body>
+		<ui:composition>
+		<div class="container">
+				<div class="col-md-6 ">
+					<h:form id="form">
+					<p:growl id="mes" showDetail="true" />
+						<p:fieldset legend="#{filiereBean.label} de filiere">
+							<table>
+								<tr>
+									<td><p:outputLabel for="idf" styleClass="p-d-block">ID</p:outputLabel></td>
+									<td>
+										<p:inputText id="idf" 
+							        		styleClass="p-d-block" 
+							        		disabled="true"
+										   	value="#{filiereBean.filiere.idFiliere}"
+										   	style="background-color: silver;" 
+										   	readonly="readonly"/>
+								  </td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="code" styleClass="p-d-block">code</p:outputLabel></td>
+									<td><p:inputText id="code" styleClass="p-d-block" value="#{filiereBean.filiere.code}" required="true"/></td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="libille" styleClass="p-d-block">Libille</p:outputLabel></td>
+									<td><p:inputText id="libille" styleClass="p-d-block" value="#{filiereBean.filiere.libille}" required="true"/></td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<p:commandLink id="ajax" action="${filiereBean.save()}" style="margin-right:20px;">
+							            	<p:commandButton type="button" value="${filiereBean.label}"  icon="pi pi-check" />
+							        	</p:commandLink>
+							        </td>
+								</tr>
+							</table>
+						<p:messages id="messages">
+				            <p:autoUpdate/>
+				        </p:messages>
+						</p:fieldset>
+					</h:form>
+				</div>
+			</div>
+		
+	</ui:composition>
+		</h:body>
+</html>

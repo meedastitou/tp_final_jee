@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<h:body>
+		<ui:composition>
+			<div class="container">
+				<div class="col-md-6 " >
+					<p:growl id="mes" showDetail="true" />
+					<h:form id="form">
+					
+						<p:fieldset legend="#{userBean.label} d'user">
+							<table>
+								<tr>
+									<td><p:outputLabel for="ide" styleClass="p-d-block">ID</p:outputLabel></td>
+									<td>
+										<p:inputText id="ide" 
+							        		styleClass="p-d-block" 
+							        		disabled="true"
+										   	value="#{userBean.user.id}"
+										   	style="background-color: silver;" 
+										   	readonly="readonly"/>
+								  </td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="username" styleClass="p-d-block">User Name</p:outputLabel></td>
+									<td>
+										<p:inputText id="username" styleClass="p-d-block" value="#{userBean.user.userName}" required="true"/>
+										<p:message for="username"/>	
+									</td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="nom" styleClass="p-d-block">Nom</p:outputLabel></td>
+									<td>
+										<p:inputText id="nom" styleClass="p-d-block" value="#{userBean.user.nom}" required="true"/>
+										<p:message for="nom"/>	
+									</td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="prenom" styleClass="p-d-block">Prenom</p:outputLabel></td>
+									<td>
+										<p:inputText id="prenom" styleClass="p-d-block" value="#{userBean.user.prenom}" required="true"/>
+										<p:message for="prenom"/>									
+									</td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="pwd1" styleClass="p-col-fixed" style="width:100px" value="Password"/></td>
+									<td>
+										<p:password id="pwd1" value="#{userBean.user.password}" match="pwd2" label="Password 1" required="true"/>
+										<p:message for="pwd1"/>
+										
+									</td>
+									
+								</tr>
+								
+								<tr>
+									<td> <p:outputLabel for="pwd2" styleClass="p-col-fixed" style="width:100px" value="Password"/></td>
+									<td>
+										<p:password id="pwd2" value="#{userBean.user.password}" label="Password 2" required="true"/>
+										<p:message for="pwd2"/>
+									</td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="pic" styleClass="p-d-block">Image</p:outputLabel></td>
+									<td>
+										<p:fileUpload id="pic"
+						                      	mode="advanced" dragDropSupport="true"
+												update="cropperPanel" sizeLimit="100000"
+												allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+						                      	listener="#{userBean.handleFileUpload}"/>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<p:commandLink id="ajax" action="${userBean.save()}" update="form" style="margin-right:20px;">
+							            	<p:commandButton type="button" value="${userBean.label}"  icon="pi pi-check" />
+							        	</p:commandLink>
+							        </td>
+								</tr>
+							</table>
+							
+						</p:fieldset>
+						<p:outputPanel  id="cropperPanel"   style="display:flex; justify-content:center;">
+							<p:graphicImage                                    
+		                                       height="150" width="150"
+											style="cursor:pointer"
+											value="#{userBean.etudiantPicture()}" stream="false" />
+						</p:outputPanel>
+					</h:form>
+				</div>
+			</div>
+		
+		</ui:composition>
+	</h:body>
+	
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Gestion Filiere</title>
+		<style>
+			.maincontainer{
+				position: absolute;
+				width: 350px;
+				height: 300px;
+				background: none;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+
+			}
+
+			.thecard{
+				position: relative;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border-radius: 10px;
+				background-color: #4a4a4a;											
+				box-shadow: 2px 5px #a09d9da3;
+				transform-style: preserve-3d;
+				transition: all 0.8s ease;
+			}
+
+			.rotate{
+				transform: rotateY(180deg);
+			}
+
+			.thefront{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border-radius: 10px;
+				backface-visibility: hidden;
+				overflow: hidden;
+			}
+
+			.theback{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border-radius: 10px;
+				backface-visibility: hidden;
+				overflow: hidden;
+				text-align: center;
+				transform: rotateY(180deg);
+			}
+
+		</style>
+	</h:head>
+
+	<h:body>
+	  
+	  	<p:growl id="growl" life="2000"/>
+		<div class="maincontainer">
+
+			<div class="thecard" id="thecard">
+				<div id="rotate" style="position: absolute;
+					        right: 0px;
+	  							top: 18px;
+						    color: #fff;
+						    background-color: #8a8af0;
+						    padding: 5px;
+						    border-radius: 6px;
+						    transform: rotate(45deg);
+						    cursor: pointer;
+						    z-index:1;">
+					<span id="trnsf">Sing Up</span>
+				</div>	
+				<div class="thefront">
+					<h2 style="text-align: center;
+								    font-size: 35px;
+								    font-weight: 100;
+								    color: #ececec;">
+								    login
+						</h2>
+						<h:form>
+							<table cellpadding="10">
+								<tr>
+									<td><p:outputLabel for="username"  style="color:#ffffff;">User Name</p:outputLabel></td>
+									<td><p:inputText id="username" value="#{globalBean.user.userName}" style="width:100%;"/></td>
+								</tr>
+								<tr>
+									<td><p:outputLabel for="password" style="color:#ffffff;">Password</p:outputLabel></td>
+									<td><p:password id="password" value="#{globalBean.user.password}" toggleMask="true" redisplay="true" /></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align: right;"> 
+										
+											<h:commandLink action="${globalBean.Login()}">
+												<img src="img/edit.png" />							
+											</h:commandLink>
+									</td>
+								</tr>
+							</table>
+						</h:form>
+				</div>
+	
+				<div class="theback">
+					<h2 style="text-align: center;
+					font-size: 35px;
+					font-weight: 100;
+					color: #ececec;">
+					Sign Up
+					</h2>
+					<h:form>
+						<table cellpadding="10">
+							<tr>
+								<td><p:outputLabel for="username" style="color:#ffffff;">User Name</p:outputLabel></td>
+								<td><p:inputText id="username" value="" style="width:100%;"/></td>
+							</tr>
+							<tr>
+								<td><p:outputLabel for="password" style="color:#ffffff;">Password</p:outputLabel></td>
+								<td><p:password id="password" value="" toggleMask="true" redisplay="true" /></td>
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align: right;"> 
+									<p:commandButton type="button" value="Login" />
+								</td>
+							</tr>
+						</table>
+								
+					</h:form>
+				</div>
+	
+			</div>
+	  	</div>
+	  	
+		
+		  <script>
+				var i=0;
+			  var rotate = document.getElementById("rotate");
+			  rotate.addEventListener("click",function(){
+					document.getElementById("thecard").classList.toggle("rotate");
+					if(i==0){
+						rotate.innerHTML="Login";
+						i=1;
+					}else{
+						rotate.innerHTML="Sign Up";
+						i=0;
+					}
+			  });
+		  </script>
+	</h:body>
+	
+</html>

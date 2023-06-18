@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+      
+
+<h:head>  
+<title>ajax-validation</title>  
+</h:head>  
+<h:body>  
+
+<h:form>
+    <p:selectOneMenu value="#{bean.selectedCar}" converter="carConverter">
+        <f:selectItem itemLabel="Select a car" itemValue="" />
+        <f:selectItems value="#{bean.carList}" var="car" itemLabel="#{car}" itemValue="#{car}" />
+    </p:selectOneMenu>
+    <p:commandButton value="Submit" action="#{bean.submit}" />
+</h:form>
+</h:body>
+
+</html>
+
+
+<!-- <div class="field col-12 md:col-4">
+			<p:outputLabel value="Pojo" for="@next" />
+			<p:autoComplete id="pojo" value="#{autoCompleteView.country1}"
+				completeMethod="#{autoCompleteView.completeCountry}" var="country"
+				itemLabel="#{country.name}" itemValue="#{country}"
+				converter="#{countryConverter}" forceSelection="true"
+				scrollHeight="250" />
+		</div> -->

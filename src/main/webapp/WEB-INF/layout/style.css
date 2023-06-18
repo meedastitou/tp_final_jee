@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+	width: 100%;
+	background-color: #000;
+	color: #fff; 
+	padding:10px;
+}
+li{
+	display: inline;
+	margin-right:19px;
+}
+a{
+	text-decoration: none;
+	color: #fff;
+}
+input{
+		width:100%;	
+		outline:none;
+}
